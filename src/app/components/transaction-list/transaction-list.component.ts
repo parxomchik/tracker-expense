@@ -86,29 +86,6 @@ export class TransactionListComponent implements OnInit {
       this.applyFilters();
     });
   }
-  // applyFilters(): void {
-  //   const { category, transactionType, dateFrom, dateTo } = this.form.value;
-  //   console.log('this.form.value', this.form.value)
-
-  //   this.filteredData = this.transactions.filter((transaction) => {
-  //     const matchesCategory =
-  //       category === CategoryType.All || transaction.category === category;
-  //     console.log('matchesCategory', matchesCategory)
-  //     const matchesTransactionType =
-  //       transactionType === TransactionType.All ||
-  //       transaction.transactionType === transactionType;
-
-  //     const transactionDate = new Date(transaction.date);
-
-  //     const matchesDateRange =
-  //       (!dateFrom || transactionDate >= new Date(dateFrom)) &&
-  //       (!dateTo || transactionDate <= new Date(dateTo));
-
-  //     return matchesCategory && matchesTransactionType && matchesDateRange;
-  //   });
-
-  // }
-
   applyFilters(): void {
     const { category, transactionType, dateFrom, dateTo } = this.form.value;
 
@@ -132,16 +109,6 @@ export class TransactionListComponent implements OnInit {
       const matchesDateRange =
         (!fromDate || transactionDate >= fromDate) &&
         (!toDate || transactionDate <= toDate);
-
-      // Detailed debugging for each transaction
-      console.log('Transaction filtering:', {
-        categoryMatch: matchesCategory,
-        typeMatch: matchesTransactionType,
-        dateMatch: matchesDateRange,
-        transactionDate,
-        fromDate,
-        toDate
-      });
 
       return matchesCategory && matchesTransactionType && matchesDateRange;
     });
