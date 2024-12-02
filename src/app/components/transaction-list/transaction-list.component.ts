@@ -64,14 +64,15 @@ export class TransactionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      category: ['All'],
-      transactionType: ['All'],
+      category: [CategoryType.All],
+      transactionType: [TransactionType.All],
       dateFrom: [new Date()],
       dateTo: [new Date()],
     });
 
     this.loadTransactions();
     this.subscribeToFilters();
+    this.applyFilters();
   }
 
   loadTransactions(): void {
@@ -85,22 +86,62 @@ export class TransactionListComponent implements OnInit {
       this.applyFilters();
     });
   }
+  // applyFilters(): void {
+  //   const { category, transactionType, dateFrom, dateTo } = this.form.value;
+  //   console.log('this.form.value', this.form.value)
+
+  //   this.filteredData = this.transactions.filter((transaction) => {
+  //     const matchesCategory =
+  //       category === CategoryType.All || transaction.category === category;
+  //     console.log('matchesCategory', matchesCategory)
+  //     const matchesTransactionType =
+  //       transactionType === TransactionType.All ||
+  //       transaction.transactionType === transactionType;
+
+  //     const transactionDate = new Date(transaction.date);
+
+  //     const matchesDateRange =
+  //       (!dateFrom || transactionDate >= new Date(dateFrom)) &&
+  //       (!dateTo || transactionDate <= new Date(dateTo));
+
+  //     return matchesCategory && matchesTransactionType && matchesDateRange;
+  //   });
+
+  // }
+
   applyFilters(): void {
     const { category, transactionType, dateFrom, dateTo } = this.form.value;
 
     this.filteredData = this.transactions.filter((transaction) => {
       const matchesCategory =
-        category === CategoryType.All || transaction.category === category;
+        category === CategoryType.All ||
+        transaction.category === category;
 
       const matchesTransactionType =
         transactionType === TransactionType.All ||
         transaction.transactionType === transactionType;
 
       const transactionDate = new Date(transaction.date);
+      const fromDate = dateFrom ? new Date(dateFrom) : null;
+      const toDate = dateTo ? new Date(dateTo) : null;
+
+      if (fromDate) fromDate.setHours(0, 0, 0, 0);
+      if (toDate) toDate.setHours(23, 59, 59, 999);
+      transactionDate.setHours(0, 0, 0, 0);
 
       const matchesDateRange =
-        (!dateFrom || transactionDate >= new Date(dateFrom)) &&
-        (!dateTo || transactionDate <= new Date(dateTo));
+        (!fromDate || transactionDate >= fromDate) &&
+        (!toDate || transactionDate <= toDate);
+
+      // Detailed debugging for each transaction
+      console.log('Transaction filtering:', {
+        categoryMatch: matchesCategory,
+        typeMatch: matchesTransactionType,
+        dateMatch: matchesDateRange,
+        transactionDate,
+        fromDate,
+        toDate
+      });
 
       return matchesCategory && matchesTransactionType && matchesDateRange;
     });
