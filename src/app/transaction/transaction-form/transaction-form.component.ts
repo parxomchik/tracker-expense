@@ -10,8 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIcon } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { CategoryType } from '../../constants/category-type.const';
-import { TransactionType } from '../../constants/transaction-type.const';
+import { CategoryType } from '../constants/category-type.const';
+import { TransactionType } from '../constants/transaction-type.const';
 
 @Component({
   selector: 'app-transaction-form',

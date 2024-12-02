@@ -11,12 +11,12 @@ import { MatIcon } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
-import { TransactionService } from '../../service/transaction.service';
-import { Transaction } from '../../shared/models/transaction.interface';
+import { TransactionService } from '../../shared/service/transaction.service';
+import { Transaction } from '../../shared/interfaces/transaction.interface';
 import { TransactionTypePipe } from "../../shared/pipes/transactionType.pipe";
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { TransactionType } from '../../constants/transaction-type.const';
-import { CategoryType } from '../../constants/category-type.const';
+import { TransactionType } from '../constants/transaction-type.const';
+import { CategoryType } from '../constants/category-type.const';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @Component({

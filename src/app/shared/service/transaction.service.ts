@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Transaction } from '../shared/models/transaction.interface';
+import { Transaction } from '../interfaces/transaction.interface';
 import { BehaviorSubject } from 'rxjs';
-import { TransactionType } from '../constants/transaction-type.const';
+import { TransactionType } from '../../transaction/constants/transaction-type.const';
 
 @Injectable({
   providedIn: 'root'

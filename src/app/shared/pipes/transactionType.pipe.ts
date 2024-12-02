@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TransactionType } from '../../constants/transaction-type.const';
+import { TransactionType } from '../../transaction/constants/transaction-type.const';
 
 @Pipe({
   name: 'transactionType',
